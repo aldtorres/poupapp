@@ -4,3 +4,9 @@ export class Conta {
     public readonly saldo: number,
   ) {}
 }
+
+
+export enum TipoTransacao {
+  DEPOSITO = 'Depósito',
+  SAQUE = 'Saque'
+}
