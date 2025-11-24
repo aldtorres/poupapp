@@ -1,9 +1,10 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { BotaoComponent } from "../../../compartilhados/botao/botao.component";
+import { ModalComponent } from "../../../compartilhados/modal/modal.component";
 
 @Component({
   selector: 'app-botao-adicionar-transacao',
-  imports: [BotaoComponent],
+  imports: [BotaoComponent, ModalComponent],
   templateUrl: './botao-adicionar-transacao.component.html',
   styleUrl: './botao-adicionar-transacao.component.css'
 })
@@ -11,10 +12,9 @@ export class BotaoAdicionarTransacaoComponent {
 
   //modalNovaTransacao = VARIAVEL DE TEMPLATE
   //viewChild é um signal!
-  modal = viewChild.required<ElementRef<HTMLDialogElement>>('modalNovaTransacao')
+  blnAbrirModal = signal(false)
 
   abrirModal(){
-    //console.log(this.modal());
-    this.modal().nativeElement.showModal();
+    this.blnAbrirModal.set(true);
   }
 }
