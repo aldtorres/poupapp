@@ -22,8 +22,8 @@
         
             @for (tipo of tiposTransacao | keyvalue; track tipo.key) {
                 <label class="label-grupo-radio">
-                <input [(ngModel)]="novaTransacaoForm.tipo" [value]="tipo.value" type="radio" name="tipo-transacao" required>
-                {{ tipo.value }}
+                    <input [(ngModel)]="novaTransacaoForm.tipo" [value]="tipo.value" type="radio" name="tipo-transacao" required>
+                        {{ tipo.value }}
                 </label>
             }
         </fieldset>
