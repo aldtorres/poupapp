@@ -1,4 +1,4 @@
-import { Directive } from "@angular/core";
+import { afterRender, Directive, ElementRef } from "@angular/core";
 
 //somente para atributos personalizados
 //DECORATOR
@@ -6,7 +6,17 @@ import { Directive } from "@angular/core";
     selector: '[appDestaqueValorNumericoDirective]' 
 })
 export class DestaqueValorNumericoDirective {
-    constructor(){
-        console.log('DestaqueValorNumericoDirective APLICADO!')
+
+    //ElementRef ref do elemento do DOm = > iNJE.dep
+    constructor(elemento : ElementRef<HTMLElement>){
+        console.log('DIRETIVA --> DestaqueValorNumericoDirective APLICADO!')
+        console.log(elemento)
+
+        afterRender(() =>{
+            //sempre dentro do afterRender, alterar apenas após renderizar!
+            elemento.nativeElement.style.color = "var(--destaque-receita)";
+            //elemento.nativeElement.style.color = "green";
+        });
+        
     }
 }
