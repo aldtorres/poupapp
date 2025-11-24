@@ -7,7 +7,11 @@ import { afterRender, Directive, ElementRef, input } from "@angular/core";
 })
 export class DestaqueValorNumericoDirective {
 
+    //inpu requerido
     appDestaqueValorNumericoDirective = input.required<number>();
+    //input opcional
+    corPositiva = input("var(--destaque-receita)")
+    corNegativa = input("var(--destaque-despesa)")
 
     //ElementRef ref do elemento do DOm = > iNJE.dep
     constructor(elemento : ElementRef<HTMLElement>){
@@ -19,9 +23,9 @@ export class DestaqueValorNumericoDirective {
             //sempre dentro do afterRender, alterar apenas após renderizar!
             
             if(this.appDestaqueValorNumericoDirective() > 0){
-                elemento.nativeElement.style.color = "var(--destaque-receita)";
+                elemento.nativeElement.style.color = this.corPositiva();
             }else if(this.appDestaqueValorNumericoDirective() < 0){
-                elemento.nativeElement.style.color = "var(--destaque-despesa)";
+                elemento.nativeElement.style.color = this.corNegativa();
             }
             
 
