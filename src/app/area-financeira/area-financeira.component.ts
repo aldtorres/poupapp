@@ -14,11 +14,8 @@ import { Transacao, TipoTransacao } from './compartilhados/transacao.model';
 export class AreaFinanceiraComponent {
   saldo = computed(() => {
     const saldoAgrupado = this.contas()
-                              .map((conta) => {
-                                return conta.saldo;
-                              })
-                              .reduce((acc, valor) => {
-                                  return acc + valor;
+                              .reduce((acc, conta) => {
+                                  return acc + conta.saldo;
                               },0);
 
     return saldoAgrupado;
