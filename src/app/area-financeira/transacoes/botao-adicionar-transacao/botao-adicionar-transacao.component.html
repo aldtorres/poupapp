@@ -44,8 +44,9 @@
         <select [(ngModel)]="novaTransacaoForm.conta" name="conta-transacao" class="input select-conta-transacao" required>
             <option value="" selected disabled>Selecione a conta</option>
     
-            <option value="Anybank">Anybank</option>
-            <option value="Bytebank">Bytebank</option>
+             @for (conta of this.contas(); track conta) {
+                <option [value]="conta.nome">{{conta.nome}}</option>
+             }
         </select>
         </label>
     

@@ -17,7 +17,7 @@
         }
       </ul>
   
-      <app-botao-adicionar-transacao class="botao-adicionar-transacao" (handleTransacaoCriada)="handleTransacao2Criada.emit($event)"/>
+      <app-botao-adicionar-transacao [contas]="contas()" class="botao-adicionar-transacao" (handleTransacaoCriada)="handleTransacao2Criada.emit($event)"/>
     </div>
   </div>
 </section>
