@@ -12,7 +12,17 @@ import { Transacao, TipoTransacao } from './compartilhados/transacao.model';
   styleUrl: './area-financeira.component.css'
 })
 export class AreaFinanceiraComponent {
-  saldo = 30;
+  saldo = computed(() => {
+    const saldoAgrupado = this.contas()
+                              .map((conta) => {
+                                return conta.saldo;
+                              })
+                              .reduce((acc, valor) => {
+                                  return acc + valor;
+                              },0);
+
+    return saldoAgrupado;
+  });
 
   //transformar em signal!
   transacoes = signal<Transacao[]>([]);
@@ -20,7 +30,7 @@ export class AreaFinanceiraComponent {
   contasComSaldoInicial = signal<Conta[]>([]);
 
   contas = computed(() =>{
-    return this.contasComSaldoInicial().map((contaAtual)=>{
+    return this.contasComSaldoInicial().map((contaAtual) => {
       const saldoAtualizado = this.calculaSaldoAtualizado(contaAtual);
 
       return { ...contaAtual, saldo: saldoAtualizado};
