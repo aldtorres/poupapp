@@ -1,7 +1,8 @@
-import { Component, NgModuleFactory, signal } from '@angular/core';
+import { Component, NgModuleFactory, output, signal } from '@angular/core';
 import { BotaoComponent } from "../../../compartilhados/botao/botao.component";
 import { ModalComponent } from "../../../compartilhados/modal/modal.component";
 import { FormsModule } from '@angular/forms';
+import { Conta } from '../../compartilhados/conta.model';
 
 @Component({
   selector: 'app-botao-adicionar-conta',
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class BotaoAdicionarContaComponent {
   //## signal ##
-  //handleTransacaoCriada = output<Transacao>();
+  handleContaCriada = output<Conta>();
   
   //modalNovaTransacao = VARIAVEL DE TEMPLATE
   //viewChild é um signal!
@@ -29,9 +30,19 @@ export class BotaoAdicionarContaComponent {
   abrirModal(){
     this.blnAbrirModal.set(true);
   }
-  
+
   aoSubmeter(){
     console.log(this.novaContaForm);
+    
+    const novaConta = new Conta(
+      this.novaContaForm.nome,
+      Number(this.novaContaForm.saldoInicial)
+    );
+    this.handleContaCriada.emit(novaConta);
+
+    this.blnAbrirModal.set(false);
+    this.novaContaForm.nome = '';
+    this.novaContaForm.saldoInicial = '';
   }
 
 

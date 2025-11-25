@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ContaComponent } from "./conta/conta.component";
 import { Conta } from '../compartilhados/conta.model';
 import { BotaoAdicionarContaComponent } from "./botao-adicionar-conta/botao-adicionar-conta.component";
@@ -11,4 +11,6 @@ import { BotaoAdicionarContaComponent } from "./botao-adicionar-conta/botao-adic
 })
 export class ContasComponent {
   contas = input.required<Conta[]>();
+
+  handleConta2Criada = output<Conta>();
 }
